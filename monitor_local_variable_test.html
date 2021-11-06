@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>monitor_local_variable_test</title>
+    <script type="text/javascript" src="monitor_local_variable.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        var globalVariable = null;
+        (function () {
+            for (let i = 0; i < 3; i++) {
+                var localVariable = null;
+
+                globalVariable = i + 2;
+                localVariable = i * 2;
+
+                logVariableChange(globalVariable, nameOf(() => globalVariable), i);
+                logVariableChange(localVariable, nameOf(() => localVariable), i);
+            }
+        })();
+    </script>
+</body>
+</html>

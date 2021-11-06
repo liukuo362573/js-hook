@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>hook_test</title>
+    <script type="text/javascript" src="hook.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        var myHook = hook;
+        myHook.preHookCallback = function (objName, funcName, args, context) {
+        };
+
+        myHook.postHookCallback = function (objName, funcName, args, context, ret) {
+        };
+
+        myHook.hookAnyFunction(JSON, 'stringify');
+
+        myHook.hookAnyFunction(Array, 'join');
+        myHook.hookAnyFunction(Array, 'concat');
+        myHook.hookAnyFunction(Array, 'push');
+        myHook.hookAnyFunction(Array, 'indexOf');
+
+        myHook.hookAnyFunction(String, 'indexOf');
+        myHook.hookAnyFunction(String, 'concat');
+        myHook.hookAnyFunction(String, 'split');
+        myHook.hookAnyFunction(String, 'substring');
+
+        myHook.hookAnyProperty(document, 'cookie');
+
+        var test1 = 'ABC'.charCodeAt(0)  // 65
+
+        var test_arr_join = [1, 2, 3].join(''); // 123
+        var test_arr_push = [1, 2, 3].push('ABC'); // ABC
+        var test_arr_indexOf = [1, 2, 3].indexOf(3); // 2
+        var test_arr_length = [1, 2, 3].length;  // ����ʵ��
+
+        var test_str_indexOf = 'ABC'.indexOf('B'); // 1
+        var test_str_concat = 'A'.concat('BC'); // ABC
+        var test_str_split = 'A B C'.split(' ');//
+        var test_str_substring = 'ABC'.substring(0, 1);
+
+        var test_json_stringify = JSON.stringify({ "message": 'Hello,World' });
+
+        var test_document_cookie = document.cookie;
+        document.cookie = "ABC";
+    </script>
+</body>
+</html>
